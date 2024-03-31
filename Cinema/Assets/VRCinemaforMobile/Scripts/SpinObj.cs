@@ -7,6 +7,7 @@ public class SpinObj : MonoBehaviour
     public float rotationleft = 360;
     public float rotationSpeed = 10;
     public float rotation;
+    public bool stop;
 
     void Start()
     {
@@ -34,7 +35,7 @@ public class SpinObj : MonoBehaviour
             //transform.Rotate(Vector3.up, Time.deltaTime * speed);
             transform.Rotate(0, rotation, 0);
         }
-        /*스냅회전이동(순간이동)
+        //스냅회전이동(순간이동)
         if (Input.GetKeyDown(KeyCode.Q))
         {
             stop = true;
@@ -45,6 +46,6 @@ public class SpinObj : MonoBehaviour
             }
             stop = false;
         }
-        */
+        
     }
 }
