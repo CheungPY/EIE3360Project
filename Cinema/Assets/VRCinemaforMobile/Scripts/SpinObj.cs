@@ -22,18 +22,45 @@ public class SpinObj : MonoBehaviour
             rotation = rotationSpeed * Time.deltaTime;
             //}
 
-            if (rotationleft > 0)
+            if (rotationleft > 350)
             {
                 rotationleft -= rotation;
+                transform.Rotate(0, rotation, 0);
+                transform.position = transform.position + new Vector3(rotation*0.1f, 0, 0);
             }
-            else
+            else if (rotationleft > 330)
             {
-                rotation = rotationleft;
-                rotationleft = 0;
+                rotationleft -= rotation;
+                transform.Rotate(0, -rotation, 0);
+                transform.position = transform.position + new Vector3(-rotation*0.1f, 0, 0);
             }
+            else if (rotationleft > 320)
+            {
+                rotationleft -= rotation;
+                transform.Rotate(0, rotation, 0);
+                transform.position = transform.position + new Vector3(rotation*0.1f, 0, 0);
+            }
+            else if (rotationleft > 310)
+            {
+                rotationleft -= rotation;
+                transform.Rotate(-rotation, 0, 0);
+                transform.position = transform.position + new Vector3(0, rotation*0.1f, 0);
+            }
+            else if (rotationleft > 290)
+            {
+                rotationleft -= rotation;
+                transform.Rotate(rotation, 0, 0);
+                transform.position = transform.position + new Vector3(0, -rotation*0.1f, 0);
+            }
+            else if (rotationleft > 280)
+            {
+                rotationleft -= rotation;
+                transform.Rotate(-rotation, 0, 0);
+                transform.position = transform.position + new Vector3(0, rotation*0.1f, 0);
+            }      
 
             //transform.Rotate(Vector3.up, Time.deltaTime * speed);
-            transform.Rotate(0, rotation, 0);
+            // transform.Rotate(0, rotation, 0);
         }
         //스냅회전이동(순간이동)
         if (Input.GetKeyDown(KeyCode.Q))
