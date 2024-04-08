@@ -5,20 +5,26 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 
 public class ChangeClip : MonoBehaviour
-{
-    GameObject videoObject,playButtonObject;
+{    
     VideoPlayer videoPlayer;
-    Image playButton;
+    Image pausePlayButtonIcon;
+    Button pausePlayButton;
+    public Button[] buttons;
     public VideoClip[] clips;
     public Sprite[] icons;
 
     // Start is called before the first frame update
     void Start()
-    {        
-        videoObject = GameObject.Find("VideoPlayer");
-        videoPlayer = videoObject.GetComponent<VideoPlayer>();
-        playButtonObject = GameObject.Find("PlayButton");
-        playButton = playButtonObject.GetComponent<Image>();
+    {
+        videoPlayer = GameObject.Find("VideoPlayer").GetComponent<VideoPlayer>();        
+        pausePlayButtonIcon = GameObject.Find("PausePlayButton").GetComponent<Image>();
+        pausePlayButton = GameObject.Find("PausePlayButton").GetComponent<Button>();
+        pausePlayButton.onClick.AddListener(PausePlay);
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            int temp = i;
+            buttons[i].onClick.AddListener(()=>Play(temp));
+        }
     }
 
     // Update is called once per frame
@@ -26,39 +32,45 @@ public class ChangeClip : MonoBehaviour
     {
         if(videoPlayer.isPlaying){
             // playButton.sprite = Resources.Load <Sprite>("Assets/Oculus/SampleFramework/Usage/SpatialAnchor/Textures/OCUI_24_Filled_2x.png");
-            playButton.sprite = icons[1];
+            pausePlayButtonIcon.sprite = icons[1];
         }
         else{
-            playButton.sprite = icons[0];
+            pausePlayButtonIcon.sprite = icons[0];
         }
+        /////////////////////////////////////////////////
+        // if(Input.GetKeyDown(KeyCode.Alpha1)){
+        //     videoPlayer.clip = clips[0];
+        //     videoPlayer.Play();
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha2)){
+        //     videoPlayer.clip = clips[1];
+        //     videoPlayer.Play();
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha3)){
+        //     videoPlayer.clip = clips[2];
+        //     videoPlayer.Play();
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha4)){
+        //     videoPlayer.clip = clips[3];
+        //     videoPlayer.Play();
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha5)){
+        //     videoPlayer.clip = clips[4];
+        //     videoPlayer.Play();
+        // }
+    }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-            videoPlayer.clip = clips[0];
+    void PausePlay(){
+        if(videoPlayer.isPlaying){
+            videoPlayer.Pause();
+        }
+        else{
             videoPlayer.Play();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
-            videoPlayer.clip = clips[1];
-            videoPlayer.Play();
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
-            videoPlayer.clip = clips[2];
-            videoPlayer.Play();
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha4)){
-            videoPlayer.clip = clips[3];
-            videoPlayer.Play();
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha5)){
-            videoPlayer.clip = clips[4];
-            videoPlayer.Play();
-        }
-        if(Input.GetKeyDown(KeyCode.Space)){
-            if(videoPlayer.isPaused){
-                videoPlayer.Play();
-            }
-            else{
-                videoPlayer.Pause();
-            }
-        }
+    }
+
+    void Play(int i){
+        videoPlayer.clip = clips[i];
+        videoPlayer.Play();
     }
 }

@@ -17,62 +17,29 @@ public class SpinObj : MonoBehaviour
     void Update()
     {
         //float rotation = rotationSpeed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.A))
+        {
+            rotation = -rotationSpeed * Time.deltaTime;
+            transform.Rotate(0, rotation, 0);
+            transform.position = transform.position + new Vector3(rotation*0.1f, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
         {
             rotation = rotationSpeed * Time.deltaTime;
-            //}
-
-            if (rotationleft > 350)
-            {
-                rotationleft -= rotation;
-                transform.Rotate(0, rotation, 0);
-                transform.position = transform.position + new Vector3(rotation*0.1f, 0, 0);
-            }
-            else if (rotationleft > 330)
-            {
-                rotationleft -= rotation;
-                transform.Rotate(0, -rotation, 0);
-                transform.position = transform.position + new Vector3(-rotation*0.1f, 0, 0);
-            }
-            else if (rotationleft > 320)
-            {
-                rotationleft -= rotation;
-                transform.Rotate(0, rotation, 0);
-                transform.position = transform.position + new Vector3(rotation*0.1f, 0, 0);
-            }
-            else if (rotationleft > 310)
-            {
-                rotationleft -= rotation;
-                transform.Rotate(-rotation, 0, 0);
-                transform.position = transform.position + new Vector3(0, rotation*0.1f, 0);
-            }
-            else if (rotationleft > 290)
-            {
-                rotationleft -= rotation;
-                transform.Rotate(rotation, 0, 0);
-                transform.position = transform.position + new Vector3(0, -rotation*0.1f, 0);
-            }
-            else if (rotationleft > 280)
-            {
-                rotationleft -= rotation;
-                transform.Rotate(-rotation, 0, 0);
-                transform.position = transform.position + new Vector3(0, rotation*0.1f, 0);
-            }      
-
-            //transform.Rotate(Vector3.up, Time.deltaTime * speed);
-            // transform.Rotate(0, rotation, 0);
+            transform.Rotate(0, rotation, 0);
+            transform.position = transform.position + new Vector3(rotation*0.1f, 0, 0);
         }
-        //스냅회전이동(순간이동)
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.W))
         {
-            stop = true;
-            if (stop == true)
-            {
-                Vector3 rotationObj = new Vector3(0, 0, 90);
-                transform.Rotate(rotationObj);
-            }
-            stop = false;
+            rotation = rotationSpeed * Time.deltaTime;
+            transform.Rotate(-rotation, 0, 0);
+            transform.position = transform.position + new Vector3(0, rotation*0.1f, 0);
         }
-        
+        if (Input.GetKey(KeyCode.S))
+        {
+            rotation = -rotationSpeed * Time.deltaTime;
+            transform.Rotate(-rotation, 0, 0);
+            transform.position = transform.position + new Vector3(0, rotation*0.1f, 0);
+        } 
     }
 }
