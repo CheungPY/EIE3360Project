@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChangeClip : MonoBehaviour
 {    
     VideoPlayer videoPlayer;
     Image pausePlayButtonIcon;
-    Button pausePlayButton;
+    Button pausePlayButton, exitButton;
     public Button[] buttons;
     public VideoClip[] clips;
     public Sprite[] icons;
+    public int sceneIndex=0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,8 @@ public class ChangeClip : MonoBehaviour
         pausePlayButtonIcon = GameObject.Find("PausePlayButton").GetComponent<Image>();
         pausePlayButton = GameObject.Find("PausePlayButton").GetComponent<Button>();
         pausePlayButton.onClick.AddListener(PausePlay);
+        exitButton = GameObject.Find("ExitButton").GetComponent<Button>();
+        exitButton.onClick.AddListener(()=>Exit(sceneIndex));
         for (int i = 0; i < buttons.Length; i++)
         {
             int temp = i;
@@ -72,5 +76,9 @@ public class ChangeClip : MonoBehaviour
     void Play(int i){
         videoPlayer.clip = clips[i];
         videoPlayer.Play();
+    }
+
+    void Exit(int index){
+        SceneManager.LoadScene(index);
     }
 }
