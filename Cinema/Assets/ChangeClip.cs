@@ -41,27 +41,11 @@ public class ChangeClip : MonoBehaviour
         else{
             pausePlayButtonIcon.sprite = icons[0];
         }
-        /////////////////////////////////////////////////
+        
         // if(Input.GetKeyDown(KeyCode.Alpha1)){
         //     videoPlayer.clip = clips[0];
         //     videoPlayer.Play();
-        // }
-        // if(Input.GetKeyDown(KeyCode.Alpha2)){
-        //     videoPlayer.clip = clips[1];
-        //     videoPlayer.Play();
-        // }
-        // if(Input.GetKeyDown(KeyCode.Alpha3)){
-        //     videoPlayer.clip = clips[2];
-        //     videoPlayer.Play();
-        // }
-        // if(Input.GetKeyDown(KeyCode.Alpha4)){
-        //     videoPlayer.clip = clips[3];
-        //     videoPlayer.Play();
-        // }
-        // if(Input.GetKeyDown(KeyCode.Alpha5)){
-        //     videoPlayer.clip = clips[4];
-        //     videoPlayer.Play();
-        // }
+        // }        
     }
 
     void PausePlay(){
